@@ -1,0 +1,130 @@
+/*body{*/
+/*    background-color: cadetblue;*/
+/*}*/
+
+.bgnav{
+    background-color: #05ddf5;
+    color: black!important;
+}
+
+/*.formCont{*/
+/*    background-color: #05ddf5;*/
+/*    justify-content: center!important;*/
+/*    flex-direction: column;*/
+/*    max-width: 300px;*/
+/*    !*margin-top: 20%;*!*/
+/*    margin: auto;*/
+/*}*/
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: white !important;
+    overflow-y: hidden;
+}
+.logCont{
+    width: 400px;
+    height: 400px;
+    margin-top: 25%;
+    margin-bottom: auto;
+    position: relative;
+    display: flex;
+    background: white !important;
+}
+.user_card {
+    width: 400px;
+    height: 300px;
+    margin-top: 25%;
+    margin-bottom: auto;
+    background: #fcf19d;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+
+.form_container {
+    margin-top: 20px;
+}
+input[type="email"]
+{
+    border: 0;
+    border-bottom: 1px solid;
+    border-color: #05ddf5;
+    outline: 0;
+    width: 370px;
+    transform:translateY(-60px);
+}
+input[name = "password1"]{
+    border: 0;
+    border-bottom: 1px solid ;
+    border-color: #05ddf5;
+    outline: 0;
+    width: 370px;
+    transform:translateY(-124px);
+}
+input[name = "password2"]{
+    border: 0;
+    border-bottom: 1px solid ;
+    border-color: #05ddf5;
+    outline: 0;
+    width: 370px;
+    transform:translateY(-160px);
+}
+#form-title{
+    color: #000000;
+    font-size: 40px;
+    height: 20%;
+}
+.login_btn {
+    width: 100%;
+    background: #05ddf5 !important;
+    color: black !important;
+    transform: translateY(-90px);
+    border-radius: 0px!important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #6590c9 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+ outline: 0px !important;
+}
+.test{
+    margin-top: 20%;
+    position: inherit;
+}
+#label1{
+    transform: translateY(-60px);
+    display: inline-block;
+}
+#label2{
+    transform: translateY(-120px);
+    display: inline-block;
+}
+#label3{
+    transform: translateY(-160px);;
+    display: inline-block;
+}
+#reg{
+    font-size: 56px;
+    color: #05ddf5;
+}

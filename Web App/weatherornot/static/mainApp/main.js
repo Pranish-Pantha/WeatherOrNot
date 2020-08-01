@@ -3,10 +3,10 @@ function getLocation(){
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else{
-        document.getElementById("").innerHTML = "Didnt work"
+        document.getElementById("location").innerHTML = "Didnt work"
     }
 }
 function showPosition(position) {
-    document.getElementById("").innerHTML = "Latitude: " + position.coords.latitude +
+    document.getElementById("location").innerHTML = "Latitude: " + position.coords.latitude +
         "<br>Longitude: " + position.coords.longitude;
 }

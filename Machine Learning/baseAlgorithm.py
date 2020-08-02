@@ -3,15 +3,15 @@ import csv
 
 # generate random climate data
 def genClimateData():
-    AQI = random.randint(0, 500)
-    Pollen = random.randint(0, 3)
-    Dust = random.randint(0, 400)
-    Temperature = random.randint(0, 40)
-    Humidity = random.randint(0, 100)
-    CloudCover = random.randint(0, 2)
-    HeatIndex = random.randint(10, 55)
-    SO2 = random.randint(0, 1)
-    UVI = random.randint(0, 11)
+    AQI = random.gauss(150, 40) #random.randint(0, 500)
+    Pollen = random.gauss(1.5, .3) #random.randint(0, 3)
+    Dust = random.gauss(200, 40) #random.randint(0, 400)
+    Temperature = random.gauss(20, 4) #random.randint(0, 40)
+    Humidity = random.gauss(40, 20) #random.randint(0, 100)
+    CloudCover = random.gauss(2, .5) #random.randint(0, 2)
+    HeatIndex = random.gauss(25, 5) #random.randint(10, 55)
+    SO2 = random.gauss(.4, .1) #random.randint(0, 1)
+    UVI = random.gauss(7, 2) #random.randint(0, 11)
     data = {"AQI": AQI, "Pollen": Pollen, "Dust": Dust, "Temperature": Temperature,
     "Humidity": Humidity, "CloudCover": CloudCover, "HeatIndex": HeatIndex, "SO2": SO2, "UVI": UVI}
     return data
@@ -19,25 +19,25 @@ def genClimateData():
 # disease-climate data
 numToWarning = {1: "Safe", 2:"Caution", 3:"Stay in"}
 DiseaseToMetric = {
-"Asthma": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Melanoma": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Photoaging": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Basal cell carcinoma": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"dysautonomia": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Lung Cancer": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Pneumonia": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"chronic bronchitis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Cystic fibrosis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Diabetes": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Arthritis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Epilepsy": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Migraines": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"seasonal allergic rhinitis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Pollen Allergy": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Dust Allergy": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"albinism": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Photodermatitis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"Hyperhidrosis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
+        "Asthma":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Melanoma":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
+        "Photoaging":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
+        "Basal Cell Carcinoma":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
+        "Dysautonomia":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Lung Cancer":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Pneumonia":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Chronic Bronchitis":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[75,80], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Cystic fibrosis":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [30,35], "Humidity":	[70,75], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Diabetes":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
+        "Arthritis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
+        "Epilepsy":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
+        "Migraines":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
+        "Seasonal Allergic Rhinitis":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [95,100], "Humidity":	[80,85], "CloudCover":	[28,33], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [3,4]},
+        "Pollen Allergy":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Dust Allergy":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
+        "Albinism":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
+        "Photodermatitis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [5,6]},
+        "Hyperhidrosis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [5,6]}
 }
 
 diseases = list(DiseaseToMetric.keys())
@@ -124,7 +124,9 @@ def predictDisease(climateData, disease):
         SkinRisk = 3
     if BreatheRisk > 3:
         BreatheRisk = 3
-    return dict(zip(["CancerRisk", "HeatRisk", "SkinRisk", "BreatheRisk"], list(map(lambda x: numToWarning.get(round(x)), [CancerRisk, HeatRisk, SkinRisk, BreatheRisk]))))
+
+    normalizeLabels = {1:0, 2:.5, 3:1}
+    return list(map(lambda x: normalizeLabels.get(round(x)), [CancerRisk, HeatRisk, SkinRisk, BreatheRisk]))
 
 diseasesInput = list(map(lambda x: (x,x), diseases))
 
@@ -132,19 +134,18 @@ def generateDataPoint():
     climateData = genClimateData()
     #return predictDisease(climateData, diseases[3])
     diseaseEncodings = list(map(lambda x: 0, diseases))
-    numDiseases = random.randint(0,5)
+    numDiseases = random.randint(0,15)
     for i in range(numDiseases):
         q = random.randint(0, len(diseaseEncodings)-1)
         diseaseEncodings[q] = 1
-        print(diseases[q])
-    predictions = {
-        'CancerRisk': "Safe",
-        'HeatRisk': "Safe",
-        'SkinRisk': "Safe",
-        'BreatheRisk': "Safe"
-    }
+        #print(diseases[q])
+    predictions = [0,0,0,0]
     for i in range(len(diseaseEncodings)):
         if diseaseEncodings[i] == 1:
-            predictions.update(predictDisease(climateData, diseases[i]))
+            diseasePreds = predictDisease(climateData, diseases[i])
+            for j in range(len(diseasePreds)):
+                f = lambda x: 1 if x>1 else x
+                predictions[j] = f(predictions[j] + diseasePreds[j])
     return (climateData, diseaseEncodings, predictions)
-print(diseases)
+
+print(generateDataPoint())

@@ -1,0 +1,6 @@
+tensorflow
+meteomatics
+pwai
+pyowm
+weatherbit
+dotenv

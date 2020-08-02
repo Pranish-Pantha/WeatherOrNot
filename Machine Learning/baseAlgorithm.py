@@ -37,7 +37,7 @@ DiseaseToMetric = {
 "Dust Allergy": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
 "albinism": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
 "Photodermatitis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
-"sweats": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
+"Hyperhidrosis": {"AQI": [50, 150], "Pollen": [10, 50], "Dust": [10, 50], "Temperature": [30, 35], "Humidity": [90, 100], "CloudCover": [1, 1], "HeatIndex": [25, 30], "SO2": [10, 50], "UVI": [6, 8]},
 }
 
 diseases = list(DiseaseToMetric.keys())
@@ -126,6 +126,7 @@ def predictDisease(climateData, disease):
         BreatheRisk = 3
     return dict(zip(["CancerRisk", "HeatRisk", "SkinRisk", "BreatheRisk"], list(map(lambda x: numToWarning.get(round(x)), [CancerRisk, HeatRisk, SkinRisk, BreatheRisk]))))
 
+diseasesInput = list(map(lambda x: (x,x), diseases))
 
 def generateDataPoint():
     climateData = genClimateData()
@@ -146,5 +147,4 @@ def generateDataPoint():
         if diseaseEncodings[i] == 1:
             predictions.update(predictDisease(climateData, diseases[i]))
     return (climateData, diseaseEncodings, predictions)
-
-#print(generateDataPoint())
+print(diseases)

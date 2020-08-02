@@ -1,6 +1,6 @@
 tensorflow
 meteomatics
-pwai
+pwaqi
 pyowm
-weatherbit
-dotenv
+pyweatherbit
+python-dotenv

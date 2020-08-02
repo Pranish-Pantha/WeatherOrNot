@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 import requests,json
 
@@ -12,18 +13,23 @@ from .forms import registerForm, loginForm, diseaseForm, locForm
 
 def loginPage(request):
     form = loginForm()
+    context = {}
     if request.method == 'POST':
         email = request.POST.get('email')
-        password = request.POST.get('password')
+        password = request.POST.get('password1')
         user=authenticate(request,username=email,password=password)
         if user is not None:
             login(request,user)
-            return redirect('home')
-
-    context = {
+            return redirect('app-home')
+        else:
+            context.update({
+                "error_message" : "Incorrect username or password."
+            })
+    context.update({
         'form':form,
         'pageName' : 'Login'
-    }
+    })
+
     return render(request,"mainApp/login.html",context)
 
 
@@ -32,8 +38,10 @@ def register(request):
     if request.method == 'POST':
         form = registerForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('')
+            username = request.POST.get('email')
+            user= User.objects.create_user(username,request.POST.get('email'),request.POST.get('password1'))
+            user.save()
+            return redirect('app-home')
         print(form.errors)
     context = {
         'form': form,
@@ -60,7 +68,11 @@ def home(request):
         'pageName' : 'Home'
     }
     return render(request,'mainApp/home.html',context)
-
+def output(request):
+    context = {
+        'pageName': 'Output',
+    }
+    return render(request,'mainApp/output.html',context)
 def getZip(request):
     rootAPI = 'http://ip-api.com/json/'
     req = requests.get(rootAPI)
@@ -68,5 +80,3 @@ def getZip(request):
     zip = res['zip']
     return zip
 
-def diseaseTings(request):
-    return TemplateResponse(request,"testemp.html",{'diseaseModel':diseaseModel.objects.all()})

@@ -266,3 +266,11 @@ input[name = "password2"]{
     overflow-y: hidden;
     font-size: 20px;
 }
+#errormessage{
+    width: 400px!important;
+    text-align: center;
+}
+.headings{
+    color: #05ddf5;
+    font-size: 20px;
+}

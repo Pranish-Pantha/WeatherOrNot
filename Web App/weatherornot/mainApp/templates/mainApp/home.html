@@ -1,23 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weather Or Not!</title>
-    <link href="style.css" rel="text/css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
-<body onload="getLocation()">
-
-<p id="location"></p>
-
-
-
-
-
+{% extends "mainApp/base.html"%}
+{% block content%}
+{% load static %}
+<!--{% load crispy_forms_tags %}-->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init();
+    function redirect1(){
+        document.getElementById("about").scrollIntoView({
+            behavior:'smooth'
+        });
+    }
+    function redirect2(){
+        document.getElementById("loc").scrollIntoView({
+            behavior:'smooth'
+        });
+    }
+    function getLocation(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            document.getElementById("location").innerHTML = "Getting Location didnt work, it was probably not allowed."
+        }
+    }
+    function showPosition(position) {
+        document.getElementById("location").value = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        console.log("Latitude: " + position.coords.latitude +
+            "Longitude: " + position.coords.longitude)
+    }
+
+
 </script>
-<script src="main.js"></script>
-</body>
-</html>
+<div id="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bgnav">
+        <a class="navbar-brand" href="home.html">Weather or Not</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="">TEST</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="">TEST</a>
+                </li>
+                <li class="nav-item active" id="right">
+                    <a class="nav-link" href="">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>    <h1 id="centerHead" class="text-center"> Should you go outside today?</h1>
+    <div id="letsfind">Let's find out</div>
+    <img src="{% static 'mainApp/img/arrow.png' %}" class="scrollDown" style="top: 56%;"onclick="redirect1()">
+</div>
+<div id="about">
+    <div>
+        <div class="interior text-wrap" data-aos="fade-left" data-aos-easing="ease-in-sine">
+            <p id="abtText">About</p>
+            <p id="abtPara">Weather or Not is your handy dandy assistant that will help you figure out weather you're gonna be exploring mountain ranges in the wilderness or exploring the Netflix catalog in your bed. Our tool utilizes a hybrid system, with a reactive machine learning model and an algorithm to accurately assess the weather outside and determine risk factors such as pollen, air quality, UV Index and a lot more, all personalized to you.
+        </div>
+        <div >
+            <img data-aos="fade-right" id="abtLogo" style= "height: 95%;width: 50%"src="{% static 'mainApp/img/weatherornot.png' %}" data-aos-easing="ease-in-sine">
+            <img src="{% static 'mainApp/img/arrow-down-outline.svg' %}" class="scrollDown" id="scrollDown2" onclick="redirect2()" >
+
+        </div>
+<!--        <div id="abtDiv">-->
+<!--            <p id="abtText">About</p>-->
+<!--            <p id="abtPara" class="text-wrap">Weather or Not is your handy dandy assistant that will help you figure out weather you're gonna be exploring mountain ranges in the wilderness or exploring the Netflix catalog in your bed. Our tool utilizes a hybrid system, with a reactive machine learning model and an algorithm to accurately assess the weather outside and determine risk factors such as pollen, air quality, UV Index and a lot more, all personalized to you.-->
+<!--            </p>-->
+<!--        </div>-->
+    </div>
+</div>
+
+<div id="loc" style="color: black">
+    <form method="POST" action="" class="text-center">
+        {% csrf_token %}
+        <h1 style="color: #05ddf5;font-size: 70px">Location</h1>
+        <span style="font-size: 30px">Current Location: <input id="location" value="{{zip}}" disabled> <br>If you would like to change it type your location into here:          {{form2}}</span>
+        <!--put da other input location here -->
+        <h1 style="color: #05ddf5;font-size: 70px">Allergies & Conditions</h1>
+        <div style="width: 20%;margin: auto" >
+            {{ form|crispy }}
+            <p style="color: grey;font-size: 20px">In order to select multiple Conditions hold "Control" or "Command" and click</p>
+        </div>
+<!--        <table>-->
+<!--            <tr>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+        <input class="btn login_btn" type="submit" value="Submit" id="algSub">
+    </form>
+</div>
+{% endblock content %}

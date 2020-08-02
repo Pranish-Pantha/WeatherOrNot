@@ -31,13 +31,11 @@ class diseaseForm(forms.Form):
         choices=diseasesInput,
         widget=forms.SelectMultiple(attrs={'class': 'selectField'}),
     )
+    Location = forms.CharField(label='Zip Code', required=False)
     # Conditions = forms.MultipleChoiceField(
     #     required = False,
     #     widget = forms.CheckboxSelectMultiple(attrs={'class': 'selectField'}),
     #     choices = diseasesInput,
     # )
 
-
-class locForm(forms.Form):
-    location = forms.CharField(label='Zip Code',required = False)
 

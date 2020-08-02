@@ -271,6 +271,16 @@ input[name = "password2"]{
     text-align: center;
 }
 .headings{
-    color: #05ddf5;
-    font-size: 20px;
+    color: #0fd2f5;
+    font-size: 50px;
+}
+#message{
+    font-size: 50px;
+    color: #0fd2f5;
+    margin-left: 25%;
+}
+#line{
+    /*color: blue;*/
+    border: 3px solid;
+    border-color: #000;
 }

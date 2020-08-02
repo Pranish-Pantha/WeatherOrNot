@@ -4,13 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
-import requests,json
+from .baseAlgorithm import diseases
+import requests,json,sys
+from .predictModule import predictor
+import pgeocode
 
 # Create your views here.
 from .models import *
-from .forms import registerForm, loginForm, diseaseForm, locForm
+from .forms import registerForm, loginForm, diseaseForm
 # from .models import diseaseModel
 
+predict = predictor()
 def loginPage(request):
     form = loginForm()
     context = {}
@@ -51,27 +55,42 @@ def register(request):
 
 
 def home(request):
-    form = diseaseForm()
-    form2 = locForm()
-    if request.method == 'POST':
-        form = diseaseForm(request.POST)
-        if form.is_valid():
-            form.save()
-    if request.method == 'POST':
-        form2 = locForm(request.POST)
-        if form2.is_valid():
-            form2.save()
     context = {
-        'zip' : getZip(request),
-        'form' : form,
-        'form2' : form2,
         'pageName' : 'Home'
     }
     return render(request,'mainApp/home.html',context)
-def output(request):
+
+
+def conditions(request):
+    form = diseaseForm()
+    if request.method == 'POST':
+        form = diseaseForm(request.POST)
+        if form.is_valid():
+            patientData = list(map(lambda x: 0, diseases))
+            conds = dict(form.cleaned_data)["Conditions"]
+            for i in range(len(conds)):
+                for j in range(len(diseases)):
+                    if conds[i] == diseases[j]:
+                        patientData[j] = 1
+            if form.cleaned_data['Location'] != "":
+                print(predict.algorithmPredict(predict.getClimateData(getLong(form.cleaned_data),getLat(form.cleaned_data)),patientData))
+
+#getCoords(getZip())
+
     context = {
-        'pageName': 'Output',
+        'zip' : getZip(request),
+        'form' : form,
+        'pageName' : 'conditions'
     }
+    return render(request,'mainApp/conditions.html',context)
+
+def output(request):
+    context = {}
+    if User.is_authenticated:
+        context.update({
+            'pageName': 'Output',
+
+        })
     return render(request,'mainApp/output.html',context)
 def getZip(request):
     rootAPI = 'http://ip-api.com/json/'
@@ -79,4 +98,16 @@ def getZip(request):
     res = json.loads(req.text)
     zip = res['zip']
     return zip
+
+
+def getLat(zip):
+    gcode = pgeocode.Nominatim('us')
+    lat = gcode.query_postal_code(zip['Location'])['latitude']
+    return lat
+
+def getLong(zip):
+    gcode = pgeocode.Nominatim('us')
+    long = gcode.query_postal_code(zip['Location'])['longitude']
+    return long
+
 

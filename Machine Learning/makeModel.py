@@ -71,7 +71,8 @@ model.compile(optimizer=tf.keras.optimizers.RMSprop(), loss='categorical_crossen
 
 model.summary()
 #model.fit(features, labels, batch_size=1, epochs=10, verbose=1)
-model.fit([climateFeatures, patientFeatures], labels, batch_size=100, epochs=4000, verbose=1)
+model.fit([climateFeatures, patientFeatures], labels, batch_size=100, epochs=10000, verbose=1)
 preds = model.predict([climateFeatures, patientFeatures])
+#preds = model.predict(features)
 print(np.round(preds, 2))
 model.save('predictiveModel.h5')

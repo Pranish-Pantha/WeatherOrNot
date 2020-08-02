@@ -94,7 +94,7 @@ class Climate:
         except Exception as e:
             print("Failed, the exception is {}t".format(e))
 
-    def getAll(self, x, y):
+    def getAllMetrics(self, x, y):
         climateData = []
         # flip x and y cuz lat and long
         climateData.append(self.getAQI(y, x))
@@ -109,5 +109,5 @@ class Climate:
         return climateData
 
 
-climate = Climate(usernameM, passwordM, token, openWeatherToken, weatherbitToken)
+#climate = Climate(usernameM, passwordM, token, openWeatherToken, weatherbitToken)
 # Use 35, -80

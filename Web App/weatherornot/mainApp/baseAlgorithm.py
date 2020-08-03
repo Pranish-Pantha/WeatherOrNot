@@ -41,90 +41,90 @@ DiseaseToMetric = {
 }
 
 diseases = list(DiseaseToMetric.keys())
-
 # predict threats for single disease
 def predictDisease(climateData, disease):
-    HeatRisk, BreatheRisk, SkinRisk, CancerRisk = 1, 1, 1, 1
-    AQIData = climateData.get("AQI")
-    print(disease)
-    AQIMetric = DiseaseToMetric.get(disease).get("AQI")
-    if AQIData > AQIMetric[0]:
-        if AQIData > AQIMetric[1]:
-            BreatheRisk += 1.5
-            CancerRisk += 1.5
-        else:
-            BreatheRisk += 0.5
-            CancerRisk += 0.5
-    PollenData = climateData.get("Pollen")
-    PollenMetric = DiseaseToMetric.get(disease).get("Pollen")
-    if PollenData > PollenMetric[0]:
-        if PollenData > PollenMetric[1]:
-            BreatheRisk += 1.5
-        else:
-            BreatheRisk += 0.5
-    DustData = climateData.get("Dust")
-    DustMetric = DiseaseToMetric.get(disease).get("Dust")
-    if DustData > DustMetric[0]:
-        if DustData > DustMetric[1]:
-            BreatheRisk += 1.5
-        else:
-            BreatheRisk += 0.5
-    TempData = climateData.get("Temperature")
-    TempMetric = DiseaseToMetric.get(disease).get("Temperature")
-    if TempData > TempMetric[0]:
-        if TempData > TempMetric[1]:
-            HeatRisk += 1.5
-            SkinRisk += 1.5
-        else:
-            HeatRisk += 0.5
-            SkinRisk += 0.5
-    HeatIData = climateData.get("HeatIndex")
-    HeatIMetric = DiseaseToMetric.get(disease).get("HeatIndex")
-    if HeatIData > HeatIMetric[0]:
-        if HeatIData > HeatIMetric[1]:
-            HeatRisk += 1.5
-        else:
-            HeatRisk += 0.5
-    CloudCData = climateData.get("CloudCover")
-    CloudCMetric = DiseaseToMetric.get(disease).get("CloudCover")
-    if CloudCData <= CloudCMetric[0]:
-        if CloudCData <= CloudCMetric[1]:
-            HeatRisk += 1.5
-            CancerRisk += 1.5
-        else:
-            HeatRisk += 0.5
-            CancerRisk += 0.5
-    HumidityData = climateData.get("Humidity")
-    HumidityMetric = DiseaseToMetric.get(disease).get("Humidity")
-    if HumidityData > HumidityMetric[0]:
-        if HumidityData > HumidityMetric[1]:
-            HeatRisk += 1.5
-            SkinRisk += 1.5
-        else:
-            HeatRisk += 0.5
-            SkinRisk += 0.5
-    SO2Data = climateData.get("SO2")
-    SO2Metric = DiseaseToMetric.get(disease).get("SO2")
-    if SO2Data > SO2Metric[0]:
-        if SO2Data > SO2Metric[1]:
-            SkinRisk += 1.5
-        else:
-            SkinRisk += 0.5
-    UVData = climateData.get("UVI")
-    UVMetric = DiseaseToMetric.get(disease).get("UVI")
-    if UVData > UVMetric[0]:
-        if UVData > UVMetric[1]:
-            CancerRisk += 1.5
-        else:
-            CancerRisk += 1.5
-    if CancerRisk > 3:
-        CancerRisk = 3
-    if HeatRisk > 3:
-        HeatRisk = 3
-    if SkinRisk > 3:
-        SkinRisk = 3
-    if BreatheRisk > 3:
-        BreatheRisk = 3
+    for diseas in disease:
+        HeatRisk, BreatheRisk, SkinRisk, CancerRisk = 1, 1, 1, 1
+        AQIData = climateData.get("AQI")
+        print(diseas)
+        AQIMetric = DiseaseToMetric.get(diseas).get("AQI")
+        if AQIData > AQIMetric[0]:
+            if AQIData > AQIMetric[1]:
+                BreatheRisk += 1.5
+                CancerRisk += 1.5
+            else:
+                BreatheRisk += 0.5
+                CancerRisk += 0.5
+        PollenData = climateData.get("Pollen")
+        PollenMetric = DiseaseToMetric.get(diseas).get("Pollen")
+        if PollenData > PollenMetric[0]:
+            if PollenData > PollenMetric[1]:
+                BreatheRisk += 1.5
+            else:
+                BreatheRisk += 0.5
+        DustData = climateData.get("Dust")
+        DustMetric = DiseaseToMetric.get(diseas).get("Dust")
+        if DustData > DustMetric[0]:
+            if DustData > DustMetric[1]:
+                BreatheRisk += 1.5
+            else:
+                BreatheRisk += 0.5
+        TempData = climateData.get("Temperature")
+        TempMetric = DiseaseToMetric.get(diseas).get("Temperature")
+        if TempData > TempMetric[0]:
+            if TempData > TempMetric[1]:
+                HeatRisk += 1.5
+                SkinRisk += 1.5
+            else:
+                HeatRisk += 0.5
+                SkinRisk += 0.5
+        HeatIData = climateData.get("HeatIndex")
+        HeatIMetric = DiseaseToMetric.get(diseas).get("HeatIndex")
+        if HeatIData > HeatIMetric[0]:
+            if HeatIData > HeatIMetric[1]:
+                HeatRisk += 1.5
+            else:
+                HeatRisk += 0.5
+        CloudCData = climateData.get("CloudCover")
+        CloudCMetric = DiseaseToMetric.get(diseas).get("CloudCover")
+        if CloudCData <= CloudCMetric[0]:
+            if CloudCData <= CloudCMetric[1]:
+                HeatRisk += 1.5
+                CancerRisk += 1.5
+            else:
+                HeatRisk += 0.5
+                CancerRisk += 0.5
+        HumidityData = climateData.get("Humidity")
+        HumidityMetric = DiseaseToMetric.get(diseas).get("Humidity")
+        if HumidityData > HumidityMetric[0]:
+            if HumidityData > HumidityMetric[1]:
+                HeatRisk += 1.5
+                SkinRisk += 1.5
+            else:
+                HeatRisk += 0.5
+                SkinRisk += 0.5
+        SO2Data = climateData.get("SO2")
+        SO2Metric = DiseaseToMetric.get(diseas).get("SO2")
+        if SO2Data > SO2Metric[0]:
+            if SO2Data > SO2Metric[1]:
+                SkinRisk += 1.5
+            else:
+                SkinRisk += 0.5
+        UVData = climateData.get("UVI")
+        UVMetric = DiseaseToMetric.get(diseas).get("UVI")
+        if UVData > UVMetric[0]:
+            if UVData > UVMetric[1]:
+                CancerRisk += 1.5
+            else:
+                CancerRisk += 1.5
+        if CancerRisk > 3:
+            CancerRisk = 3
+        if HeatRisk > 3:
+            HeatRisk = 3
+        if SkinRisk > 3:
+            SkinRisk = 3
+        if BreatheRisk > 3:
+            BreatheRisk = 3
 
     normalizeLabels = {1:0, 2:.5, 3:1}
     return list(map(lambda x: normalizeLabels.get(round(x)), [CancerRisk, HeatRisk, SkinRisk, BreatheRisk]))

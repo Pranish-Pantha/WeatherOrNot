@@ -286,6 +286,15 @@ input[name = "password2"]{
 }
 #begBtn{
     position: relative;
-    bottom: 20%;
+    /*bottom: 20%;*/
+    transform: translateY(-1200%);
+    left: 57%;
     font-size: 2rem!important;
+}
+
+#grad{
+    /*background: linear-gradient(180deg,#fff 10%,#000 30%);*/
+}
+#maanavReplace{
+    height: 300px;
 }

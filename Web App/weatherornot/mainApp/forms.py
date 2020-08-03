@@ -9,6 +9,8 @@ diseases = ['Asthma', 'Melanoma', 'Photoaging', 'Basal Cell Carcinoma', 'Dysauto
             'Seasonal Allergic Rhinitis', 'Pollen Allergy', 'Dust Allergy', 'Albinism', 'Photodermatitis',
             'Hyperhidrosis']
 diseasesInput = list(map(lambda x: (x, x), diseases))
+feedbacks = ['Heat Risk' , 'Cancer Risk', 'Skin Risk', 'Breath Risk']
+feedbackInput = list(map(lambda x: (x, x), feedbacks))
 
 class registerForm(UserCreationForm):
     class Meta:
@@ -32,10 +34,17 @@ class diseaseForm(forms.Form):
         widget=forms.SelectMultiple(attrs={'class': 'selectField'}),
     )
     Location = forms.CharField(label='Zip Code', required=False)
+class locationForm(forms.Form):
+    Location = forms.CharField(label='Zip Code', required=False)
     # Conditions = forms.MultipleChoiceField(
     #     required = False,
     #     widget = forms.CheckboxSelectMultiple(attrs={'class': 'selectField'}),
     #     choices = diseasesInput,
     # )
+class feedbackForm(forms.Form):
 
-
+    risks = forms.MultipleChoiceField(
+        required = False,
+        choices = feedbackInput,
+        widget=forms.CheckboxSelectMultiple(),
+    )

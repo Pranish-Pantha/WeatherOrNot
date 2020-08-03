@@ -1,0 +1,73 @@
+{% extends "mainApp/base2.html"%}
+{% block content%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div id="grad">
+<span style="font-size: 200px;color: #0fd2f5">Welcome, </span><span id="output" style="font-size: 200px;color: #0fd2f5">{{username}}</span>
+    <hr id="line">
+
+    <form method="POST" action="" class="text-center">
+    {% csrf_token %}
+    <h1 style="color: #05ddf5;font-size: 70px">Location</h1>
+    <span style="font-size: 30px">Current Location: <input id="location" value="{{zip}}" disabled> <br>If you would like to change it type your location into here: {{form}}</span>
+        <br>
+    <input class="btn login_btn" type="submit" value="Submit" id="algSub">
+</form>
+<div>
+    <span id="message" class="text-center">Stay inside today and binge some netflix.</span>
+    <span style="font-size: 40px"><br>Here's Why:</span>
+    <div>
+        <span class="headings">Temperature: </span>
+        <span id="temp"></span>
+    </div>
+    <div>
+        <span class="headings">Feels Like Temperature:
+        </span><span id="feeslike"></span>
+    </div>
+    <div>
+        <span class="headings">Humidity: </span><span id="humid"></span>
+    </div>
+    <div>
+        <span class="headings">Cloud Cover: </span><span id="cloudcover"></span>
+    </div>
+    <div>
+        <span class="headings">Heat Index: </span><span id="heati"></span>
+    </div>
+    <div>
+        <span class="headings">Air Quality Index:</span> <span id="aqi"></span>
+    </div>
+    <div>
+        <span class="headings">Pollen Count: </span><span id="pc"></span>
+    </div>
+    <div>
+        <span class="headings">Dust Count: </span><span id="dc"></span>
+    </div>
+    <div>
+        <span class="headings">Sulfur Dioxide: </span><span id="sd"></span>
+    </div>
+    <div>
+        <span class="headings">UV Index: </span><span id="uv"></span>
+    </div>
+    <table class="align-center">
+        <tr></tr>
+            <th><input disabled id="maanavReplace"></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+        <tr>
+            <th><input disabled></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+            <th><input disabled></th>
+        </tr>
+    </table>
+    <form method="POST" action="" style="margin: auto!important;position: relative;left: 40%">
+        {{form2|crispy}}
+        <input class="btn btn-info" type="submit" value="Submit" style="width: 5%!important;border-radius: 3px!important;position: relative;left: 7%">
+    </form>
+</div>
+</div>
+{% endblock content %}

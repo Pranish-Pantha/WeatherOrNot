@@ -19,25 +19,25 @@ def genClimateData():
 # disease-climate data
 numToWarning = {1: "Safe", 2:"Caution", 3:"Stay in"}
 DiseaseToMetric = {
-        "Asthma":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Melanoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
-        "Photoaging":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
-        "Basal Cell Carcinoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
-        "Dysautonomia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Lung Cancer":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Pneumonia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Chronic Bronchitis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[75,80], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Cystic Fibrosis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [30,35], "Humidity":	[70,75], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Diabetes":	{"AQI":[10,15],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
-        "Arthritis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
-        "Epilepsy":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
-        "Migraines":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
-        "Seasonal Allergic Rhinitis":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [95,100], "Humidity":	[80,85], "CloudCover":	[28,33], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
-        "Pollen Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Dust Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
-        "Albinism":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
-        "Photodermatitis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
-        "Hyperhidrosis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [5,6]}
+        "Asthma":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [28,33], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Melanoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [5,6]},
+        "Photoaging":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [5,6]},
+        "Basal Cell Carcinoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [5,6]},
+        "Dysautonomia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Lung Cancer":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Pneumonia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Chronic Bronchitis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[75,80], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Cystic Fibrosis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [28,33], "Humidity":	[70,75], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Diabetes":	{"AQI":[10,15],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [3,4]},
+        "Arthritis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [3,4]},
+        "Epilepsy":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.1,0.15],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [3,4]},
+        "Migraines":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.1,0.15],	"Temperature": [28,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [5,6]},
+        "Seasonal Allergic Rhinitis":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [28,33], "Humidity":	[80,85], "CloudCover":	[28,33], "HeatIndex": [25,30],	"SO2": [0.1,0.15], 	"UVI": [3,4]},
+        "Pollen Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Dust Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.05,0.1],	"Temperature": [30,33], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.05,0.1], 	"UVI": [3,4]},
+        "Albinism":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.1,0.15],	"Temperature": [28,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.15], 	"UVI": [3,4]},
+        "Photodermatitis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.1,0.15],	"Temperature": [28,33], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.1,0.15], 	"UVI": [5,6]},
+        "Hyperhidrosis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.1,0.15],	"Temperature": [28,33], "Humidity":	[80,85], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.1,0.15], 	"UVI": [5,6]}
 }
 
 diseases = list(DiseaseToMetric.keys())

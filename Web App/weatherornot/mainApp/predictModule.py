@@ -23,11 +23,13 @@ class predictor:
     def mlPredict(self, climateData, patientData, reload=False):
         if reload:
             self.model = tf.keras.models.load_model('predictiveModel.h5')
+        print(climateData)
         climate = np.array([climateData])
         patient = np.array([patientData])
         return np.round(self.model.predict([climate, patient])[0], 2)
 
     def feedbackTrainModel(self, climateData, patientData, correctOutput, save=False):
+
         climate = np.array([climateData])
         patient = np.array([patientData])
         output = np.array([correctOutput])

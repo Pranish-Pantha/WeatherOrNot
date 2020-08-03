@@ -2,6 +2,7 @@
 WeatherOrNot is a health assistant that analyzes risks based on local climate using a machine learning and algorithmic hybrid system, assessing factors like UV index, pollen concentration, and more.
 ![](homepage.png)
 ![](results.png)
+![](flowchart.png)
 ## Inspiration
 It’s been known for years that poor neighborhoods experience much higher rates of chronic diseases, such asthma, diabetes, and more. Some of these conditions are adversely affected by climate patterns, like Air Quality Index and temperature. We decided to make a tool to assist these communities in this regard.
 ## What it does

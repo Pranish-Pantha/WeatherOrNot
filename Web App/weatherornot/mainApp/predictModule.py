@@ -2,7 +2,7 @@ import tensorflow as tf
 from .baseAlgorithm import predictDisease, diseases
 from .climateAPI import Climate
 from dotenv import load_dotenv
-import numpy
+import numpy as np
 import os
 
 class predictor:
@@ -25,7 +25,7 @@ class predictor:
             self.model = tf.keras.models.load_model('predictiveModel.h5')
         climate = np.array([climateData])
         patient = np.array([patientData])
-        return np.round(model.predict([climate, patient])[0], 2)
+        return np.round(self.model.predict([climate, patient])[0], 2)
 
     def feedbackTrainModel(self, climateData, patientData, correctOutput, save=False):
         climate = np.array([climateData])

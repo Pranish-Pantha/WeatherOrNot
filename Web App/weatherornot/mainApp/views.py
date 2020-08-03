@@ -61,7 +61,7 @@ def home(request):
     return render(request,'mainApp/home.html',context)
 
 
-def conditions(request):
+def profile(request):
     form = diseaseForm()
     if request.method == 'POST':
         form = diseaseForm(request.POST)
@@ -73,17 +73,16 @@ def conditions(request):
                     if conds[i] == diseases[j]:
                         patientData[j] = 1
             if form.cleaned_data['Location'] != "":
+                print("This the prediction from the algorithm: ")
                 print(predict.algorithmPredict(predict.getClimateData(getLong(form.cleaned_data),getLat(form.cleaned_data)),patientData))
-
-#getCoords(getZip())
-
+                print(predict.mlPredict(predict.getClimateData(getLong(form.cleaned_data),getLat(form.cleaned_data)),patientData))
+                #heat risk,
     context = {
         'zip' : getZip(request),
         'form' : form,
-        'pageName' : 'conditions'
+        'pageName' : 'profile'
     }
-    return render(request,'mainApp/conditions.html',context)
-
+    return render(request,'mainApp/profile.html',context)
 def output(request):
     context = {}
     if User.is_authenticated:
@@ -101,13 +100,11 @@ def getZip(request):
 
 
 def getLat(zip):
-    gcode = pgeocode.Nominatim('us')
+    gcode = pgeocode.Nominatim('US')
     lat = gcode.query_postal_code(zip['Location'])['latitude']
     return lat
 
 def getLong(zip):
-    gcode = pgeocode.Nominatim('us')
+    gcode = pgeocode.Nominatim('US')
     long = gcode.query_postal_code(zip['Location'])['longitude']
     return long
-
-

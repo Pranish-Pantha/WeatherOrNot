@@ -26,6 +26,7 @@ class Climate:
     def getAQI(self, x, y):
         try:
             res = pwaqi.get_location_observation(x, y, self.token)
+            print(res)
             return res['aqi']
         except Exception as e:
             print("Failed, the exception is {}".format(e))
@@ -87,6 +88,8 @@ class Climate:
             print("Failed, the exception is {}".format(e))
     def getUVI(self, x, y):
         try:
+            x= int(x)
+            y=int(y)
             mgr = self.owm.uvindex_manager()
             observation_list = mgr.uvindex_around_coords(x, y)
             res = observation_list.value

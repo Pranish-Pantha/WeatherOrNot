@@ -73,8 +73,10 @@
         </div>
         <div >
             <img data-aos="fade-right" id="abtLogo" style= "height: 95%;width: 50%"src="{% static 'mainApp/img/weatherornot.png' %}" data-aos-easing="ease-in-sine">
-            <img src="{% static 'mainApp/img/arrow-down-outline.svg' %}" class="scrollDown" id="scrollDown2" onclick="redirect2()" >
-
+            <form method="POST" action="">
+                <button class="btn btn-info" id="begBtn" type="Submit" value="Submit">Let's Begin</button>
+            </form>
+<!--            <img src="{% static 'mainApp/img/arrow-down-outline.svg' %}" class="scrollDown" id="scrollDown2" onclick="redirect2()" >-->
         </div>
 <!--        <div id="abtDiv">-->
 <!--            <p id="abtText">About</p>-->

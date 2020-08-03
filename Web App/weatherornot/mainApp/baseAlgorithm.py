@@ -19,112 +19,113 @@ def genClimateData():
 # disease-climate data
 numToWarning = {1: "Safe", 2:"Caution", 3:"Stay in"}
 DiseaseToMetric = {
-        "Asthma":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Melanoma":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
-        "Photoaging":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
-        "Basal Cell Carcinoma":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
-        "Dysautonomia":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Lung Cancer":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Pneumonia":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Chronic Bronchitis":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[75,80], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Cystic Fibrosis":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [30,35], "Humidity":	[70,75], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Diabetes":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
-        "Arthritis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
-        "Epilepsy":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
-        "Migraines":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [5,6]},
-        "Seasonal Allergic Rhinitis":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [95,100], "Humidity":	[80,85], "CloudCover":	[28,33], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [3,4]},
-        "Pollen Allergy":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Dust Allergy":	{"AQI":[51,100],	"Pollen":[1,1.5],	"Dust":[100,150],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [1.5,2], 	"UVI": [3,4]},
-        "Albinism":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [4,8], 	"UVI": [3,4]},
-        "Photodermatitis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [5,6]},
-        "Hyperhidrosis":	{"AQI":[100,150],	"Pollen":[2,2.5],	"Dust":[250,300],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [4,8], 	"UVI": [5,6]}
+        "Asthma":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Melanoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
+        "Photoaging":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
+        "Basal Cell Carcinoma":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
+        "Dysautonomia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Lung Cancer":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Pneumonia":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Chronic Bronchitis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[75,80], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Cystic Fibrosis":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [30,35], "Humidity":	[70,75], "CloudCover":	[2,3], "HeatIndex": [25,30],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Diabetes":	{"AQI":[10,15],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
+        "Arthritis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
+        "Epilepsy":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
+        "Migraines":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
+        "Seasonal Allergic Rhinitis":	{"AQI":[100,150],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [95,100], "Humidity":	[80,85], "CloudCover":	[28,33], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
+        "Pollen Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[95,100], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Dust Allergy":	{"AQI":[7,12],	"Pollen":[1,1.5],	"Dust":[0.1,0.5],	"Temperature": [33,38], "Humidity":	[80,85], "CloudCover":	[2,3], "HeatIndex": [28,33],	"SO2": [0.1,0.5], 	"UVI": [3,4]},
+        "Albinism":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [28,33],	"SO2": [0.4,0.8], 	"UVI": [3,4]},
+        "Photodermatitis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[95,100], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [5,6]},
+        "Hyperhidrosis":	{"AQI":[10,15],	"Pollen":[2,2.5],	"Dust":[0.5,0.6],	"Temperature": [30,35], "Humidity":	[80,85], "CloudCover":	[1,2], "HeatIndex": [25,30],	"SO2": [0.4,0.8], 	"UVI": [5,6]}
 }
 
 diseases = list(DiseaseToMetric.keys())
 # predict threats for single disease
 def predictDisease(climateData, disease):
+    print(climateData)
+    HeatRisk, BreatheRisk, SkinRisk, CancerRisk = 1, 1, 1, 1
     for diseas in disease:
-        HeatRisk, BreatheRisk, SkinRisk, CancerRisk = 1, 1, 1, 1
-        AQIData = climateData.get("AQI")
-        print(diseas)
-        AQIMetric = DiseaseToMetric.get(diseas).get("AQI")
-        if AQIData > AQIMetric[0]:
-            if AQIData > AQIMetric[1]:
-                BreatheRisk += 1.5
-                CancerRisk += 1.5
-            else:
-                BreatheRisk += 0.5
-                CancerRisk += 0.5
-        PollenData = climateData.get("Pollen")
-        PollenMetric = DiseaseToMetric.get(diseas).get("Pollen")
-        if PollenData > PollenMetric[0]:
-            if PollenData > PollenMetric[1]:
-                BreatheRisk += 1.5
-            else:
-                BreatheRisk += 0.5
-        DustData = climateData.get("Dust")
-        DustMetric = DiseaseToMetric.get(diseas).get("Dust")
-        if DustData > DustMetric[0]:
-            if DustData > DustMetric[1]:
-                BreatheRisk += 1.5
-            else:
-                BreatheRisk += 0.5
-        TempData = climateData.get("Temperature")
-        TempMetric = DiseaseToMetric.get(diseas).get("Temperature")
-        if TempData > TempMetric[0]:
-            if TempData > TempMetric[1]:
-                HeatRisk += 1.5
-                SkinRisk += 1.5
-            else:
-                HeatRisk += 0.5
-                SkinRisk += 0.5
-        HeatIData = climateData.get("HeatIndex")
-        HeatIMetric = DiseaseToMetric.get(diseas).get("HeatIndex")
-        if HeatIData > HeatIMetric[0]:
-            if HeatIData > HeatIMetric[1]:
-                HeatRisk += 1.5
-            else:
-                HeatRisk += 0.5
-        CloudCData = climateData.get("CloudCover")
-        CloudCMetric = DiseaseToMetric.get(diseas).get("CloudCover")
-        if CloudCData <= CloudCMetric[0]:
-            if CloudCData <= CloudCMetric[1]:
-                HeatRisk += 1.5
-                CancerRisk += 1.5
-            else:
-                HeatRisk += 0.5
-                CancerRisk += 0.5
-        HumidityData = climateData.get("Humidity")
-        HumidityMetric = DiseaseToMetric.get(diseas).get("Humidity")
-        if HumidityData > HumidityMetric[0]:
-            if HumidityData > HumidityMetric[1]:
-                HeatRisk += 1.5
-                SkinRisk += 1.5
-            else:
-                HeatRisk += 0.5
-                SkinRisk += 0.5
-        SO2Data = climateData.get("SO2")
-        SO2Metric = DiseaseToMetric.get(diseas).get("SO2")
-        if SO2Data > SO2Metric[0]:
-            if SO2Data > SO2Metric[1]:
-                SkinRisk += 1.5
-            else:
-                SkinRisk += 0.5
-        UVData = climateData.get("UVI")
-        UVMetric = DiseaseToMetric.get(diseas).get("UVI")
-        if UVData > UVMetric[0]:
-            if UVData > UVMetric[1]:
-                CancerRisk += 1.5
-            else:
-                CancerRisk += 1.5
-        if CancerRisk > 3:
-            CancerRisk = 3
-        if HeatRisk > 3:
-            HeatRisk = 3
-        if SkinRisk > 3:
-            SkinRisk = 3
-        if BreatheRisk > 3:
-            BreatheRisk = 3
+        if diseas in DiseaseToMetric.keys():
+            AQIData = int(climateData.get("AQI"))
+            AQIMetric = DiseaseToMetric.get(diseas).get("AQI")
+            if AQIData > AQIMetric[0]:
+                if AQIData > AQIMetric[1]:
+                    BreatheRisk += 1.5
+                    CancerRisk += 1.5
+                else:
+                    BreatheRisk += 0.5
+                    CancerRisk += 0.5
+            PollenData = int(climateData.get("Pollen"))
+            PollenMetric = DiseaseToMetric.get(diseas).get("Pollen")
+            if PollenData > PollenMetric[0]:
+                if PollenData > PollenMetric[1]:
+                    BreatheRisk += 1.5
+                else:
+                    BreatheRisk += 0.5
+            DustData = int(climateData.get("Dust"))
+            DustMetric = DiseaseToMetric.get(diseas).get("Dust")
+            if DustData > DustMetric[0]:
+                if DustData > DustMetric[1]:
+                    BreatheRisk += 1.5
+                else:
+                    BreatheRisk += 0.5
+            TempData = int(climateData.get("Temperature"))
+            TempMetric = DiseaseToMetric.get(diseas).get("Temperature")
+            if TempData > TempMetric[0]:
+                if TempData > TempMetric[1]:
+                    HeatRisk += 1.5
+                    SkinRisk += 1.5
+                else:
+                    HeatRisk += 0.5
+                    SkinRisk += 0.5
+            HeatIData = int(climateData.get("HeatIndex"))
+            HeatIMetric = DiseaseToMetric.get(diseas).get("HeatIndex")
+            if HeatIData > HeatIMetric[0]:
+                if HeatIData > HeatIMetric[1]:
+                    HeatRisk += 1.5
+                else:
+                    HeatRisk += 0.5
+            CloudCData = int(climateData.get("CloudCover"))
+            CloudCMetric = DiseaseToMetric.get(diseas).get("CloudCover")
+            if CloudCData <= CloudCMetric[0]:
+                if CloudCData <= CloudCMetric[1]:
+                    HeatRisk += 1.5
+                    CancerRisk += 1.5
+                else:
+                    HeatRisk += 0.5
+                    CancerRisk += 0.5
+            HumidityData = int(climateData.get("Humidity"))
+            HumidityMetric = DiseaseToMetric.get(diseas).get("Humidity")
+            if HumidityData > HumidityMetric[0]:
+                if HumidityData > HumidityMetric[1]:
+                    HeatRisk += 1.5
+                    SkinRisk += 1.5
+                else:
+                    HeatRisk += 0.5
+                    SkinRisk += 0.5
+            SO2Data = int(climateData.get("SO2"))
+            SO2Metric = DiseaseToMetric.get(diseas).get("SO2")
+            if SO2Data > SO2Metric[0]:
+                if SO2Data > SO2Metric[1]:
+                    SkinRisk += 1.5
+                else:
+                    SkinRisk += 0.5
+            UVData = int(climateData.get("UVI"))
+            UVMetric = DiseaseToMetric.get(diseas).get("UVI")
+            if UVData > UVMetric[0]:
+                if UVData > UVMetric[1]:
+                    CancerRisk += 1.5
+                else:
+                    CancerRisk += 1.5
+            if CancerRisk > 3:
+                CancerRisk = 3
+            if HeatRisk > 3:
+                HeatRisk = 3
+            if SkinRisk > 3:
+                SkinRisk = 3
+            if BreatheRisk > 3:
+                BreatheRisk = 3
 
     normalizeLabels = {1:0, 2:.5, 3:1}
     return list(map(lambda x: normalizeLabels.get(round(x)), [CancerRisk, HeatRisk, SkinRisk, BreatheRisk]))

@@ -284,3 +284,8 @@ input[name = "password2"]{
     border: 3px solid;
     border-color: #000;
 }
+#begBtn{
+    position: relative;
+    bottom: 20%;
+    font-size: 2rem!important;
+}

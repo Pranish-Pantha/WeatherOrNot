@@ -139,7 +139,7 @@ class Climate:
         climateData.append(self.getHeatIndex(y, x))
         climateData.append(self.getSO2(y, x))
         climateData.append(self.getUVI(y, x))
-        return dict(zip(['AQI','Pollen','Dust',"Temperature",'Humidity','CloudCover','HeatIndex','S02','UVI'],climateData)),climateData
+        return dict(zip(['AQI','Pollen','Dust',"Temperature",'Humidity','CloudCover','HeatIndex','S02','UVI'],climateData))
 
 
 #climate = Climate(usernameM, passwordM, token, openWeatherToken, weatherbitToken)

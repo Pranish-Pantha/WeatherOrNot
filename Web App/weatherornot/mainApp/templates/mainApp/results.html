@@ -4,70 +4,103 @@
 {% load crispy_forms_tags %}
 
 <div id="grad">
-<span style="font-size: 200px;color: #0fd2f5">Welcome, </span><span id="output" style="font-size: 200px;color: #0fd2f5">{{username}}</span>
-    <hr id="line">
-
+<div class='container'>
+  <div class='row'>
+    <div class='col-14'>
+      <span style="font-size: 160px;color: white; margin: auto!important;">  Welcome, </span><span id="output" style="font-size: 200px;color: #ded70d">{{username}}</span>
+     </div>
+    </div>
+   </div>
     <form method="POST" action="" class="text-center">
     {% csrf_token %}
-    <h1 style="color: #05ddf5;font-size: 70px">Location</h1>
-    <span style="font-size: 30px">Current Location: <input id="location" value="{{zip}}" disabled> <br>If you would like to change it type your location into here: {{form}}</span>
+    <h1 style="color:white ;font-size: 70px">Location</h1>
+    <p>&nbsp;</p>
+    <span style="color:white ; font-size: 30px">Current Location: <input id="location" value="{{zip}}" disabled>  <br> <br> Or, new {{form}}</span>
         <br>
     <input class="btn login_btn" type="submit" value="Submit" id="algSub">
 </form>
 <div>
-    <span id="message" class="text-center">Stay inside today and binge some netflix.</span>
-    <span style="font-size: 40px"><br>Here's Why:</span>
-    <div>
-        <span class="headings">Temperature: </span>
-        <span id="temp"></span>
+
+          <br>
+          <div>
+              <span class="headings"> Temperature: {{Temperature}} Degrees Celcius</span><span id="temp"></span>
+          </div>
+          <div>
+              <span class="headings"> Feels Like Temperature: {{HeatIndex}} Degrees Celcius</span><span id="feeslike"></span>
+          </div>
+          <div>
+              <span class="headings"> Humidity: {{Humidity}}%</span><span id="humid"></span>
+          </div>
+          <div>
+              <span class="headings"> Cloud Cover: {{CloudCover}} (1-4)(low-high)</span><span id="cloudcover"></span>
+          </div>
+          <div>
+              <span class="headings"> Air Quality Index: {{AQI}} ppm</span> <span id="aqi"></span>
+          </div>
+          <div>
+              <span class="headings"> Pollen Count: {{Pollen}} ppm</span><span id="pc"></span>
+          </div>
+          <div>
+              <span class="headings"> Dust Count: {{Dust}} ppm</span><span id="dc"></span>
+          </div>
+          <div>
+              <span class="headings"> Sulfur Dioxide: {{SO2}} mg/m^3</span><span id="sd"></span>
+          </div>
+          <div>
+              <span class="headings"> UV Index: {{UVI}} (1-14)</span><span id="uv"></span>
+          </div>
+        </div>
+    <br>
+
+<!-- style = "color: #141454"!important id='outputDiv' -->
+    <div class='container'>
+      <div class='row'>
+        <div class='jumbotron col-12 bg-dark' >
+          <h2 style="color: white; margin:auto; text-align: center"> Results: </h2>
+          <hr>
+          <table class="align-center" style ="margin:auto">
+              <tr style = "width 150px">
+                  <th><h4>&nbsp;&nbsp;</h4></th>
+                  <th><h5 style=" color: white">&nbsp;Cancer Risk &nbsp;</h5></th>
+                  <th><h5 style=" color: white">&nbsp;Heat Risk &nbsp;</h5></th>
+                  <th><h5 style=" color: white">&nbsp;Skin Risk &nbsp;</h5> </th>
+                  <th><h5 style=" color: white">&nbsp;Breath Risk &nbsp;</h5></th>
+              <tr>
+              <tr>
+                  <th><h4 style=" color: white;">Algorithm Predictions: &nbsp;&nbsp;</h4></th>
+                  <th><input disabled id="tableElements" placeholder='{{acval}}% Risk' style="background-color: {{accolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{ahval}}% Risk' style="background-color: {{ahcolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{asval}}% Risk' style="background-color: {{ascolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{abval}}% Risk' style="background-color: {{abcolor}}"></th>
+              <tr>
+                  <th><h4 style=" color: white;">AI Predictions (Beta): &nbsp;&nbsp;</h4></th>
+                  <th><input disabled id="tableElements" placeholder='{{mcval}}% Risk' style="background-color: {{mccolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{mhval}}% Risk' style="background-color: {{mhcolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{msval}}% Risk' style="background-color: {{mscolor}}"></th>
+                  <th><input disabled id="tableElements" placeholder='{{mbval}}% Risk' style="background-color: {{mbcolor}}"></th>
+              </tr>
+          </table>
+          <hr>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-6' style = "margin:auto; text-align: center">
+                <h4 style=" color: white;"> Feedback: Select inaccurate predictions. </h4>
+                <form method="POST" action="" style=" color: white; font-size: 25px">
+                    {% csrf_token %}
+                    {{form2}}
+                <input class="btn btn-info" type="submit" value="Submit" style="">
+                </form>
+                {% if feedback %}
+                <div class='jumbotron' style = "color: white"!important>
+                  <h5> Thank you for the feedback. We will factor this in next time!</h5>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-        <span class="headings">Feels Like Temperature:
-        </span><span id="feeslike"></span>
-    </div>
-    <div>
-        <span class="headings">Humidity: </span><span id="humid"></span>
-    </div>
-    <div>
-        <span class="headings">Cloud Cover: </span><span id="cloudcover"></span>
-    </div>
-    <div>
-        <span class="headings">Heat Index: </span><span id="heati"></span>
-    </div>
-    <div>
-        <span class="headings">Air Quality Index:</span> <span id="aqi"></span>
-    </div>
-    <div>
-        <span class="headings">Pollen Count: </span><span id="pc"></span>
-    </div>
-    <div>
-        <span class="headings">Dust Count: </span><span id="dc"></span>
-    </div>
-    <div>
-        <span class="headings">Sulfur Dioxide: </span><span id="sd"></span>
-    </div>
-    <div>
-        <span class="headings">UV Index: </span><span id="uv"></span>
-    </div>
-    <table class="align-center">
-        <tr></tr>
-            <th><input disabled id="maanavReplace"></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-        <tr>
-            <th><input disabled></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-            <th><input disabled></th>
-        </tr>
-    </table>
-    <form method="POST" action="" style="margin: auto!important;position: relative;left: 40%">
-        {{form2|crispy}}
-        <input class="btn btn-info" type="submit" value="Submit" style="width: 5%!important;border-radius: 3px!important;position: relative;left: 7%">
-    </form>
 </div>
 </div>
 {% endblock content %}

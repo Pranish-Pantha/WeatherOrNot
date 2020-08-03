@@ -9,8 +9,9 @@ import requests,json,sys
 from .predictModule import predictor
 import pgeocode
 from db import dbAccess
+import time
 # Create your views here.
-from .models import *
+#from .models import *
 from .forms import registerForm, loginForm, diseaseForm, locationForm, feedbackForm
 # from .models import diseaseModel
 
@@ -54,8 +55,8 @@ def register(request):
             database.addEntry([username, getZip(request), username[0:username.index('@')]] + list(map(lambda x: "0", range(19))))
             database.printTable()
             database.closeConnection()
-
             user.save()
+            login(request, user)
             return redirect('app-profile')
         print(form.errors)
     context = {
@@ -67,9 +68,10 @@ def register(request):
 
 def home(request):
     if request.method == "POST":
-        if request.user.is_authenticated():
-            redirect("app-results")
-
+        if request.user.is_authenticated:
+            return redirect("app-results")
+        else:
+            return redirect("app-register")
     context = {
         'pageName' : 'Home'
     }
@@ -97,7 +99,7 @@ def profile(request):
             database.closeConnection()
 
                 #heat risk,
-        redirect('app-results')
+        return redirect('app-results')
     context = {
         'zip' : getZip(request),
         'form' : form,
@@ -105,12 +107,11 @@ def profile(request):
     }
     return render(request,'mainApp/profile.html',context)
 def results(request):
+    context = {}
+    algopreds = [0,0,0,0]
+    mlpreds = [0,0,0,0]
     form = locationForm()
     form2 = feedbackForm()
-    if request.method == 'POST':
-        form = feedbackForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
     if request.user.is_authenticated:
         email = request.user.username
         name = email[0:email.index('@')]
@@ -120,31 +121,68 @@ def results(request):
         currentPatientData = list(database.readColumn(request.user.username)[3:])
         database.closeConnection()
 
-        dictionaryToAlgorithm, listToModel =predict.getClimateData(getLong(getZip(results)),getLat(getZip(results)))
+        dictionaryToAlgorithm =predict.getClimateData(getLong(getZip(results)),getLat(getZip(results)))
         toList = list(map(lambda x: dictionaryToAlgorithm.get(x), dictionaryToAlgorithm.keys()))
+        print(toList)
         #print("This the prediction from the algorithm: ")
         # print(predict.algorithmPredict(dictionaryToAlgorithm, currentPatientData))
         # print(predict.mlPredict(toList,currentPatientData))
         if request.method == "POST":
+            context = {}
             form = locationForm(request.POST)
             if form.is_valid():
-                if form.cleaned_data['Location'] != "":
-                    dictionaryToAlgorithm, listToModel =predict.getClimateData(getLong(form['Location']),getLat(form['Location']))
+                if True:
+                    # query database for user data
+                    database = dbAccess('patientData.db')
+                    userZipCode = database.readColumn(request.user.username)[1]
+                    database.closeConnection()
+                    dictionaryToAlgorithm = predict.getClimateData(getLong(userZipCode),getLat(userZipCode))
                     toList = list(map(lambda x: dictionaryToAlgorithm.get(x), dictionaryToAlgorithm.keys()))
-                    print("This the prediction from the algorithm: ")
-                    # print(predict.algorithmPredict(dictionaryToAlgorithm, currentPatientData))
-                    # print(predict.mlPredict(toList,currentPatientData))
+                    algopreds = predict.algorithmPredict(dictionaryToAlgorithm, currentPatientData)
+                    mlpreds = predict.mlPredict(toList,currentPatientData)
+                    print(algopreds, mlpreds)
+        if request.method == 'POST' and 'risks' in request.POST:
+            form2 = feedbackForm(request.POST)
+            if form2.is_valid():
+                print(form2.cleaned_data['risks'])
+                context.update({'feedback': True})
     else:
-        redirect('app-register')
+        return redirect('app-register')
 
-    context = {
+    colorMap = lambda x: "red" if x>.6 else ('yellow' if x>.3 else "green")
+    newContext = {
         'zip': getZip(request),
         'pageName' : 'results',
         'username': name,
         'form' : form,
         'form2' : form2,
+        'AQI': toList[0],
+        'Pollen': toList[1],
+        'Dust': toList[2],
+        'Temperature': toList[3],
+        'Humidity': toList[4],
+        'CloudCover': toList[5],
+        'HeatIndex': toList[6],
+        'SO2': toList[7],
+        'UVI': toList[8],
+        'accolor': colorMap(algopreds[0]),
+        'ahcolor': colorMap(algopreds[1]),
+        'ascolor': colorMap(algopreds[2]),
+        'abcolor': colorMap(algopreds[3]),
+        'mccolor': colorMap(mlpreds[0]),
+        'mhcolor': colorMap(mlpreds[1]),
+        'mscolor': colorMap(mlpreds[2]),
+        'mbcolor': colorMap(mlpreds[3]),
+        'acval': round(algopreds[0]*100, 2),
+        'ahval': round(algopreds[1]*100, 2),
+        'asval': round(algopreds[2]*100, 2),
+        'abval': round(algopreds[3]*100, 2),
+        'mcval': round(mlpreds[0]*100, 2),
+        'mhval': round(mlpreds[1]*100, 2),
+        'msval': round(mlpreds[2]*100, 2),
+        'mbval': round(mlpreds[3]*100, 2),
     }
-
+    context.update(newContext)
     return render(request,'mainApp/results.html',context)
 def getZip(request):
     rootAPI = 'http://ip-api.com/json/'

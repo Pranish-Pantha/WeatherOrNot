@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from multiselectfield import MultiSelectField
+#from multiselectfield import MultiSelectField
 from django.db import models
 
 diseases = ['Asthma', 'Melanoma', 'Photoaging', 'Basal Cell Carcinoma', 'Dysautonomia', 'Lung Cancer', 'Pneumonia',
@@ -44,6 +44,7 @@ class locationForm(forms.Form):
 class feedbackForm(forms.Form):
 
     risks = forms.MultipleChoiceField(
+        label = '',
         required = False,
         choices = feedbackInput,
         widget=forms.CheckboxSelectMultiple(),

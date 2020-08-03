@@ -33,7 +33,7 @@
 </script>
 <div id="container">
     <nav class="navbar navbar-expand-lg navbar-dark bgnav">
-        <a class="navbar-brand" href="home.html">Weather or Not</a>
+        <a class="navbar-brand" href="{% url 'app-home' %}">Weather or Not</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -68,6 +68,7 @@
         <div >
             <img data-aos="fade-right" id="abtLogo" style= "height: 95%;width: 50%"src="{% static 'mainApp/img/weatherornot.png' %}" data-aos-easing="ease-in-sine">
             <form method="POST" action="">
+                {% csrf_token %}
                 <button class="btn btn-info" id="begBtn" type="Submit" value="Submit">Let's Begin</button>
             </form>
 <!--            <img src="{% static 'mainApp/img/arrow-down-outline.svg' %}" class="scrollDown" id="scrollDown2" onclick="redirect2()" >-->
